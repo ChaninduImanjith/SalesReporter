@@ -1,0 +1,6 @@
+﻿product_id, product_name, category, quantity_sold, unit_price
+P001, Wireless Mouse, Electronics, 12, 25.50
+P002, Notebook, Stationery, 35, 3.75
+P003, Desk Lamp, Furniture, 8, 42.00
+P004, Ballpoint Pen, Stationery, 200, 0.85
+P005, Mechanical Keyboard, Electronics, 5, 79.99
