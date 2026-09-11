@@ -5,6 +5,10 @@
 *.log
 
 target/
+
+# Report produced by `java -jar target/SalesReporter.jar ... file report.txt`
+report.txt
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
