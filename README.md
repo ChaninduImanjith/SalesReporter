@@ -33,11 +33,11 @@ com.seng21222.salesreporter
 │   ├── ConsoleReportWriter.java
 │   └── FileReportWriter.java
 │
-├── exception
+├── exception                         # (Member 3)
 │   ├── InvalidDataException.java     # thrown on malformed CSV rows / bad numeric data
-│   └── InvalidOutputMethodException.java   # (Member 3 - in progress)
+│   └── InvalidOutputMethodException.java   # thrown on an unknown output method / missing output path
 │
-└── Main.java                         # (Member 3 - in progress) - entry point, CLI args, error handling
+└── Main.java                         # (Member 3) - entry point, CLI args, error handling
 
 test/java/com.seng21222.salesreporter
 ├── io
@@ -46,21 +46,45 @@ test/java/com.seng21222.salesreporter
     └── SalesCalculatorTest.java      # (pending - after core is merged)
 ```
 
+## Prerequisites
+- JDK 21 (`java -version`) - the pom targets Java 21, so any newer JDK also builds it
+- Maven 3.9+ (IntelliJ IDEA ships one, so an IDE install alone is enough)
+- Git
+
 ## How to Build
 ```bash
 mvn clean package
 ```
+
+> `Main.java` calls into `core` and `output`, so the build only goes green once
+> Member 1's `feature/core-logic` branch is merged. Until then those two packages
+> are empty and compilation stops there.
 
 ## How to Run
 ```bash
 java -jar target/SalesReporter.jar <csv-file-path> <output-method> [output-file-path]
 ```
 
-Example:
+Example, using the sample data committed at the repo root:
 ```bash
 java -jar target/SalesReporter.jar sales.csv console
 java -jar target/SalesReporter.jar sales.csv file report.txt
 ```
+
+## Error Handling
+Every failure is reported as a single `Error: ...` line on standard error and the
+process exits with status `1`; a stack trace is never shown. A successful run
+exits with status `0`.
+
+| Situation | Message the user sees |
+|-----------|-----------------------|
+| Fewer than 2 arguments | the usage block, then `Error: Expected at least 2 arguments but received N ...` |
+| Output method is neither `console` nor `file` | `Error: Invalid output method 'x'. Use 'console' or 'file'.` |
+| `file` chosen with no output path | `Error: An output-file-path is required when the output method is 'file'.` |
+| CSV file does not exist | `Error: CSV file not found: <path>` |
+| CSV row malformed / not a number / file empty | `Error: The CSV data is invalid - <row detail>` |
+| Output file cannot be written | `Error: A file could not be read or written - <detail>` |
+| Anything unforeseen | `Error: Unexpected error (<class>) - <detail>` |
 
 ## Running Tests
 ```bash
@@ -72,4 +96,5 @@ mvn test
 - [x] Product model
 - [x] File I/O - CSV parsing with unit tests (Member 2)
 - [ ] Core logic - revenue/summary calculation (Member 1)
-- [ ] Console interface & exception handling (Member 3)
+- [x] Console interface & exception handling (Member 3) - `Main.java`, `InvalidOutputMethodException`, `InvalidDataException`
+- [x] Documentation - README build/run/error reference, Javadoc on the console and exception layers (Member 3)
