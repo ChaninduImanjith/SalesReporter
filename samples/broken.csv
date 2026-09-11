@@ -1,0 +1,4 @@
+product_id, product_name, category, quantity_sold, unit_price
+P001, Wireless Mouse, Electronics
+P002, Notebook, Stationery, thirty, 3.75
+P003, Desk Lamp, Furniture, 8
