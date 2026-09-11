@@ -8,6 +8,16 @@ package com.seng21222.salesreporter.exception;
  * <p>This is a checked exception so that {@link com.seng21222.salesreporter.Main}
  * is forced to handle it and turn it into a friendly message instead of letting
  * an unchecked failure escape to the user.
+ *
+ * <h3>Examples</h3>
+ * <ul>
+ *   <li>{@code java SalesReporter sales.csv badmethod} → throws with message
+ *       "Invalid output method 'badmethod'. Use 'console' or 'file'."</li>
+ *   <li>{@code java SalesReporter sales.csv file} → throws with message
+ *       "An output-file-path is required when the output method is 'file'."</li>
+ * </ul>
+ *
+ * @see com.seng21222.salesreporter.Main#resolveWriter(String, String[])
  */
 public class InvalidOutputMethodException extends Exception {
 
