@@ -1,0 +1,6 @@
+* text=auto eol=lf
+
+*.java text diff=java
+*.md text diff=markdown
+*.xml text
+*.csv text
