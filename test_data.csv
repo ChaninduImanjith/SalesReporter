@@ -1,0 +1,9 @@
+product_id, product_name, category, quantity_sold, unit_price
+P006, Bluetooth Speaker, Electronics, 15, 45.00
+P007, Notebook Set, Stationery, 60, 2.50
+P008, Desk Organizer, Furniture, 10, 22.00
+P009, Wireless Charger, Electronics, 25, 18.50
+P010, Yoga Mat, Fitness, 18, 15.75
+P011, Water Bottle, Fitness, 40, 8.25
+P012, Desk Lamp, Furniture, 22, 19.99
+P013, Wireless Keyboard, Electronics, 30, 35.00
